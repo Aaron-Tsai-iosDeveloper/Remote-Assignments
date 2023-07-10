@@ -1,5 +1,5 @@
 import UIKit
-
+//這是week2_第二版，前四大題除了Part1部分待完成，其他已經能運行 (還有很多知識不夠熟悉🥲，有點東拼西湊的感覺)我會繼續加油的！
 //Part 1: Object-Oriented Swift
  //1. Declare a class Animal with a property gender and a method eat(). The data type of should be enum Gender as below and when you call eat() method, it will print
    class Animal {
@@ -29,7 +29,7 @@ import UIKit
     }
    }
    class Tiger:Animal{
-    override init(gender: String) {
+       override init(gender: String ) {
         super.init(gender: gender)
     }
     override func eat() {
@@ -46,7 +46,7 @@ import UIKit
    }
  
  //3.Declare a class Zoo with a property weeklyHot which means the most popular one in the zoo this week. The codes below can’t work correctly, please find what data type should A be and solve the problem. Note that tiger, elephant, and horse are instances of class Tiger, Elephant, and Horse, respectively.
-   
+   //抱歉，Steven 我再想一下這一段🙁
 
  //4. What’s the difference between Class and Struct?
   //Class是Reference Type，並且可以繼承類別的屬性與方法
@@ -107,53 +107,91 @@ import UIKit
     }
    }
  //Please create a People instance. Use guard let to unwrap the pet property and print its name.
-    var petName = Pets(name: "皮卡丘")
-    var personWithPets = People(pet: petName)
-    
-    guard let personWithPets =
-    else
- //Please create another People instance. Use if let to unwrap the pet property and print its name.
-    func unwrapAnotherPeole (pet:Pets?){
-        if let unwrappedPet:Pets? = pet {print("寵物名稱 \(unwrappedPet)"}
+   var petName = Pets(name: "皮卡丘")
+   var person = People(pet:petName)
+   func ownership()->String{
+    guard let personPet = person.pet
+    else{ print("沒有寵物")
+        return ""
     }
-    else {print("沒有寵物")}
- //
+    return "他的寵物是" + personPet.name
+   }
+   let result = ownership()
+   print(result)
+  
+ //Please create another People instance. Use if let to unwrap the pet property and print its name.
+   petName = Pets(name: "多拉a夢")
+   person = People(pet:petName)
+   if let personPet = person.pet{
+       print("他的寵物是\(personPet.name)")
+   }
+
 
 //Part 3: Protocol in Swift
  //1. Declare a struct Person with a name property type String and a protocol name PoliceMan. There is only one method arrestCriminals with no argument and return void in the protocol.
-   protocol PoliceMan{
-    func arrestCriminals()->Void{
-    }
-   }
-                                    
-   struct Person: PoliceMan {
-     var name:String
-      init(name:String){self.name = name}
-     func arrestCrimanals(){}
-   }
-   let person = Person(name:"David")
-   person.arrestCrimanals()
-   print(person.name)
-            
  //2. Make struct Person conform to PoliceMan protocol.
  //3. Declare a protocol ToolMan with a method fixComputer that has no argument and return void.
  //4. Add a property toolMan to the struct Person with data type ToolMan.
+   protocol PoliceMan{
+    func arrestCriminals()->Void
+   }
+   protocol ToolMan{
+    func fixComputer()->Void
+   }
+   
+   struct Person: PoliceMan, ToolMan {
+    var name:String
+    init(name:String){self.name = name}
+    func arrestCriminals() {
+        print("警察就是會抓捕犯人！")
+    }
+    func fixComputer() {
+        print("工具人肯定要會修電腦！")
+    }
+   }
  //5. Declare a struct named Engineer that conforms to the ToolMan protocol.
+   struct Engineer: ToolMan{
+    func fixComputer() {
+        print("工具人肯定要會修電腦！")
+    }
+   }
+   let engineer = Engineer()
+   engineer.fixComputer()
+ 
  //6. Create a Person instance with the name “Steven” and also create the relative data you need to declare this instance.
-
+   let Steven = Person(name:"Steven")
+   print("Steven是",terminator: "") //terminator:""代表print不換行
+   Steven.arrestCriminals()
+   print("Steven也是",terminator: "")
+   Steven.fixComputer()
+   
+   
 //Part 4: Error Handling in Swift
  //Read the code above first and paste it in the playground file, there is an error inside the code. Please solve the error by adding a piece of code in the file. Call guess(number:) and pass 20 as the argument after you fix the problem.
-   enum GuessNumberGameError {
+   enum GuessNumberGameError: LocalizedError {
     case wrongNumber
+    var errorDescription: String?{
+        switch self{
+        case .wrongNumber: return "猜錯了！"
+        }
+    }
    }
    class GuessNumberGame {
     var targetNumber = 10
     func guess(number: Int) throws {
-     guard number == targetNumber else {
-      throw GuessNumberGameError.wrongNumber
-     }
-    print("Guess the right number: \(targetNumber)")
+        guard number == targetNumber else {
+            throw GuessNumberGameError.wrongNumber
+        }
+        print("Guess the right number: \(targetNumber)")
     }
    }
+   let guessNumber = GuessNumberGame()
+   do{ try guessNumber.guess(number: 20)
+   }catch{
+    print(error)
+    print(error.localizedDescription)
+   }
 
-//抱歉Steven，還沒處理好的部分我會盡快完成push上去😔
+//這是week2_第二版，前四大題除了Part1部分待完成，其他已經能運行 (還有很多知識不夠熟悉🥲，有點東拼西湊的感覺)我會繼續加油！
+//我在掙扎一下，如果這些不熟悉的內容明後天還是沒辦法理解內化，我會主動尋求Steven的協助！
+//謝謝Steven!🙂
