@@ -1,17 +1,16 @@
 import UIKit
-//這是week2_第二版，前四大題除了Part1部分待完成，其他已經能運行 (還有很多知識不夠熟悉🥲，有點東拼西湊的感覺)我會繼續加油的！
 //Part 1: Object-Oriented Swift
- //1. Declare a class Animal with a property gender and a method eat(). The data type of should be enum Gender as below and when you call eat() method, it will print
+ //1. Declare a class Animal with a property gender and a method eat(). The data type of should be enum Gender as below and when you call eat() method, it will print I eat everything!
    class Animal {
-    enum Gender：String {
+    enum Gender {
      case male
      case female
      case undefined
     }
     
-    var gender:String
+    var gender:Gender
     
-    init(gender:String){
+    init(gender:Gender){
      self.gender = gender
     }
     func eat(){
@@ -21,7 +20,7 @@ import UIKit
   
  //2. Declare three classes: Elephant, Tiger, Horse that inherits from Animal and override the eat() method to print what they usually eat.
    class Elephant: Animal {
-    override init(gender:String) {
+    override init(gender:Gender) {
      super.init(gender:gender)
     }
     override func eat(){
@@ -29,7 +28,7 @@ import UIKit
     }
    }
    class Tiger:Animal{
-       override init(gender: String ) {
+       override init(gender: Gender ) {
         super.init(gender: gender)
     }
     override func eat() {
@@ -37,7 +36,7 @@ import UIKit
     }
    }
    class Horse:Animal{
-    override init(gender: String) {
+    override init(gender: Gender) {
         super.init(gender: gender)
     }
     override func eat() {
@@ -46,21 +45,41 @@ import UIKit
    }
  
  //3.Declare a class Zoo with a property weeklyHot which means the most popular one in the zoo this week. The codes below can’t work correctly, please find what data type should A be and solve the problem. Note that tiger, elephant, and horse are instances of class Tiger, Elephant, and Horse, respectively.
-   //抱歉，Steven 我再想一下這一段🙁
+
+   class Zoo {
+    var weeklyHot:Animal
+     init(weeklyHot:Animal) {self.weeklyHot = weeklyHot}
+   }
+   let tiger = Tiger(gender: .male)
+   let elephant = Elephant(gender: .female)
+   let horse = Horse(gender: .undefined)
+   let zoo = Zoo(weeklyHot: tiger)
+   zoo.weeklyHot = tiger
+   zoo.weeklyHot = elephant
+   zoo.weeklyHot = horse
 
  //4. What’s the difference between Class and Struct?
   //Class是Reference Type，並且可以繼承類別的屬性與方法
   //Struct是Value Type，沒有類似繼承的特性
 
  //5. What does Initilizer do in class and struct?
-  //Initilizer初始化是設置實例時用於設定屬性的初始值，可以透過關鍵字init來定義初始化的方法。
+  //*Initilizer初始化是設置實例時用於設定屬性的初始值，可以透過關鍵字init來定義初始化的方法。
+  //class 必須透過 init() 來執行初始化，struct不一定需要使用init()初始化，在沒有自定義Initializer的情況，Struct的Memberwise Initializers會自動添加參數，我們可以直接創建實體。
+  //例如範例 https://docs.swift.org/swift-book/documentation/the-swift-programming-language/initialization/
+   struct Size {
+    var width = 0.0, height = 0.0
+   }
+   let twoByTwo = Size(width: 2.0, height: 2.0)
+  
 
  //6. What’s the difference between reference type and value type?
   //reference type 與 value type 最大差別在於 傳遞資料的形式，reference type是共用同一個實例，value type則是複製新的實例
  
  //7. What’s the difference between instance method and type method?
-  //instance method需要先有實例才能呼叫，type method 用static func 來定義，可以直接透過類別呼叫使用
- 
+  //instance method需要先有實例才能呼叫，type method 不需要實例就可以呼叫
+  //可以用static func 或class func來定義
+  //class func 可以在子類覆寫父類別的type method
+
  //8. What does self mean in an instance method and a type method respectively?
   //在instance method中self代表當前的實例，在type method中self指的是類別本身
 
@@ -95,19 +114,18 @@ import UIKit
  //2. Optional is a very special data type in Swift . Take var a: lnt？ = 10 for example, the value of a will be nil or lnt. You should have learned how to deal with Optional.
  
  //People would like to have pets, but not everyone could have one. Declare a class Pet with name property and a class People with pet property which will store a Pet instance or nil. Please try to figure out what data type is suitable for these properties in Pet and People.
-   class Pets {
+   class Pet {
     var name:String
     init(name:String){self.name = name}
    }
-   class People:Pets{
-    var pet:Pets?
-    init(pet:Pets?){
+   class People{
+    var pet:Pet?
+    init(pet:Pet?){
      self.pet = pet
-        super.init(name: pet?.name ?? "") //pet?-> p是小寫表示類別Pets的實例 //??-> 若pet?.name = nil , 則回傳空字串""
     }
    }
  //Please create a People instance. Use guard let to unwrap the pet property and print its name.
-   var petName = Pets(name: "皮卡丘")
+   var petName = Pet(name: "皮卡丘")
    var person = People(pet:petName)
    func ownership()->String{
     guard let personPet = person.pet
@@ -120,7 +138,7 @@ import UIKit
    print(result)
   
  //Please create another People instance. Use if let to unwrap the pet property and print its name.
-   petName = Pets(name: "多拉a夢")
+   petName = Pet(name: "多拉a夢")
    person = People(pet:petName)
    if let personPet = person.pet{
        print("他的寵物是\(personPet.name)")
@@ -192,6 +210,5 @@ import UIKit
     print(error.localizedDescription)
    }
 
-//這是week2_第二版，前四大題除了Part1部分待完成，其他已經能運行 (還有很多知識不夠熟悉🥲，有點東拼西湊的感覺)我會繼續加油！
-//我在掙扎一下，如果這些不熟悉的內容明後天還是沒辦法理解內化，我會主動尋求Steven的協助！
-//謝謝Steven!🙂
+
+//謝謝Steven!
