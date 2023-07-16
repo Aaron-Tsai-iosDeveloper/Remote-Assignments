@@ -52,15 +52,16 @@ class SinupViewController: UIViewController{
         if userPassword == nil{
             alertPasswordEmpty.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
             present(alertPasswordEmpty,animated: true,completion: nil)
+            dismiss(animated: true)
         }
         if userCheckPassword == nil{
             alertCheckPasswordEmpty.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
             present(alertCheckPasswordEmpty,animated: true,completion: nil)
+            dismiss(animated: true)
         }
-        if userAccount != nil && userPassword != nil && userPassword == userCheckPassword{
+        if  userPassword == userCheckPassword{
             alertSuccess.addAction(UIAlertAction.init(title: "OK", style: UIAlertAction.Style.default,handler: nil))
             present(alertSuccess,animated: true,completion: nil)
         }
-        
     }
 }
