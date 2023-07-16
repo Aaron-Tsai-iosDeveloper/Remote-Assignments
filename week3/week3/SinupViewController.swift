@@ -12,7 +12,7 @@ class SinupViewController: UIViewController{
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-    
+   
     //取得用戶回傳值
     var userAccount:String?
     @IBAction func accountText(_ sender: UITextField) {
