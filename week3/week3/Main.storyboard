@@ -85,7 +85,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="accountText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="J2z-fn-uui"/>
+                                                    <action selector="accountText:" destination="BYZ-38-t0r" eventType="editingChanged" id="s2R-gI-NgY"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your password" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="bI2-v4-wU2">
@@ -93,7 +93,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="passwordText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="7tf-ui-eSZ"/>
+                                                    <action selector="passwordText:" destination="BYZ-38-t0r" eventType="editingChanged" id="GX5-EN-wVm"/>
                                                 </connections>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Confirm your password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="oDF-aX-Wa5">
@@ -102,7 +102,7 @@
                                                 <fontDescription key="fontDescription" type="system" pointSize="10"/>
                                                 <textInputTraits key="textInputTraits"/>
                                                 <connections>
-                                                    <action selector="checkPasswordText:" destination="BYZ-38-t0r" eventType="editingDidEnd" id="Hwi-MD-O3i"/>
+                                                    <action selector="chechPasswordText:" destination="BYZ-38-t0r" eventType="editingChanged" id="ScN-Ow-bTO"/>
                                                 </connections>
                                             </textField>
                                         </subviews>
@@ -140,8 +140,10 @@
                     <tabBarItem key="tabBarItem" title="Item" id="Udd-i0-33o"/>
                     <navigationItem key="navigationItem" id="fvT-rn-OaP"/>
                     <connections>
+                        <outlet property="accountTextField" destination="7sr-T9-eWJ" id="ZVa-Fk-3fs"/>
                         <outlet property="checkTextField" destination="oDF-aX-Wa5" id="vKn-F5-3Bg"/>
                         <outlet property="checklabel" destination="zPV-h5-gKB" id="3BP-Ng-ffM"/>
+                        <outlet property="passwordTextField" destination="bI2-v4-wU2" id="aci-UD-7xh"/>
                         <outlet property="segment" destination="eiU-IK-RwM" id="KwT-va-sbz"/>
                     </connections>
                 </viewController>

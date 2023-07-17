@@ -19,6 +19,8 @@ class LoginViewController: UIViewController {
     }
     
     //切換登入與註冊頁面
+    @IBOutlet weak var accountTextField: UITextField!
+    @IBOutlet weak var passwordTextField: UITextField!
     @IBOutlet weak var checkTextField: UITextField!
     @IBOutlet weak var checklabel: UILabel!
     @IBAction func changeSegment(_ sender: UISegmentedControl) {
@@ -34,8 +36,10 @@ class LoginViewController: UIViewController {
         default:
             break
         }
+        accountTextField.text = nil
+        passwordTextField.text = nil
+        checkTextField.text = nil
     }
-    
     //取得用戶回傳值
     var userAccount:String?
     @IBAction func accountText(_ sender: UITextField) {
@@ -54,12 +58,12 @@ class LoginViewController: UIViewController {
         }
     }
     var userCheckPassword:String?
-    @IBAction func checkPasswordText(_ sender: UITextField) {
+    @IBAction func chechPasswordText(_ sender: UITextField) {
         if let checkPasswordText = sender.text{
-            userCheckPassword = checkPasswordText
-        }else{
-            userCheckPassword = nil
-        }
+                userCheckPassword = checkPasswordText
+            }else{
+                userCheckPassword = nil
+            }
     }
     //設定登入允許值
     let permission = (aacount:"appworks_school",password:"1234")
@@ -104,12 +108,11 @@ class LoginViewController: UIViewController {
                 let alertCheckPasswordEmpty = UIAlertController(title: "Error", message: "Sinup fail\nConfirmation field should not be empty.", preferredStyle: UIAlertController.Style.alert)
                 alertCheckPasswordEmpty.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 present(alertCheckPasswordEmpty,animated: true,completion: nil)
-                dismiss(animated: true)
             }else if userPassword != userCheckPassword{
                 let alertSignupfail = UIAlertController(title: "Error", message: "Signup fail", preferredStyle: UIAlertController.Style.alert)
                 alertSignupfail.addAction(UIAlertAction(title: "OK", style: UIAlertAction.Style.default,handler: nil))
                 present(alertSignupfail,animated: true,completion: nil)
             }
-        }
+            }
         }
 }
